@@ -54,8 +54,8 @@ export function CountdownDate({targetDate}){
 
     return (
         <div className="countdown">
-                <h2>Countdown</h2>
                 <div className="countdown-display">
+                    <h2>Countdown</h2>
                     <div className="numbers">
                         <p>{timeLeft.days}</p>
                             <p>:</p>
@@ -92,6 +92,49 @@ export function PhotoGallery({images=[]}){
                     />
                 ))}
             </div>
+            <div className="gallery-overlay">
+                <h2 className="gallery-text">We're getting married!</h2>
+            </div>
         </div>
+    )
+}
+
+export function MemoryLaneTimeLine({photos=[]}){
+    const events = [
+        {
+            title: "Test",
+            description: "Test Description",
+            image: photos[0]
+        },
+
+        {
+            title: "Test2",
+            description: "Test Description",
+            image: photos[1]
+        },
+
+    ];
+
+    return(
+        <section className="timeline-section">
+            <h1>A Walk Down Memory Lane!</h1>
+
+            <div className="timeline">
+                {events.map((event, index) => (
+                    <div className={`timeline-item ${index % 2 === 0 ? "left" : "right"}`} key={index}>
+                            <div className="timeline-dot"></div>
+                            <div className="timeline-icon">
+                                    <img src={event.image}
+                                        alt={event.title}
+                                    />
+                            </div>
+                            <div className="timeline-content">
+                                    <h2>{event.title}</h2>
+                                    <p>{event.description}</p>
+                            </div>
+                    </div>
+                ))}
+            </div>
+        </section>
     )
 }

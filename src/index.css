@@ -1,3 +1,18 @@
+@import url("https://fonts.googleapis.com/css2?family=Pinyon+Script&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Imbue:opsz,wght@10..100,100..900&display=swap");
+
+.pinyon-script-regular {
+  font-family: "Pinyon Script", cursive;
+  font-style: normal;
+}
+
+.imbue-script {
+  font-family: "Imbue", serif;
+  font-optical-sizing: auto;
+  font-weight: 100;
+  font-style: normal;
+}
+
 *{
     box-sizing: border-box;
 }
@@ -9,25 +24,32 @@ html, body, #root{
 }
 
 .content-row{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
     background-color: #8f5764;
     color: #faf6ed;
     margin: 0;
     padding: 0;
     min-height: 100vh;
+    
 }
 
+.main-content{
+    margin-top: 25px;
+}
 .header-section h1{
     margin: 0;
-    font-family: cursive;
+    font-family: "Imbue", serif;
     text-align: center;
-    font-size: 50px;
+    font-size: 70px;
 }
 .countdown{
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-family: cursive;
-    
+    font-family: "Imbue", serif;
+    font-size: 70px;
 }
 .countdown h2{
 
@@ -50,19 +72,21 @@ html, body, #root{
     
 }
 .navbar{
+    position: sticky;
+    top: 0;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 20px;
-    
+    z-index: 9999;
 }
 .navbar button{
     background: none;
     border: none;
     box-shadow: none;
     color:#faf6ed;
-    font-size: 20px;
-    font-family: cursive;
+    font-size: 40px;
+    font-family: "Imbue", serif;
     cursor: pointer;
 }
 
@@ -71,24 +95,141 @@ html, body, #root{
 }
 
 .gallery{
+    position: relative;
     width: 100%;
     overflow: hidden;
 }
 
 .gallery-track{
     display: flex;
-    gap: 20px;
     width: max-content;
-    animation: scrollGallery 20s linear infinite;
+    animation: scrollGallery 30s linear infinite;
 }
 
+.gallery-text{
+    position: absolute;
+    bottom: 30%;
+    left: 50%;
+    transform: translate(-50%, 50%);
+
+    z-index: 10;
+    color: white;
+    opacity: 0.5;
+    
+    font-size: 150px;
+
+    text-align: center;
+    font-family: "Pinyon Script";
+
+    white-space: nowrap;
+    
+}
+
+
 .gallery-image{
-    width: 500px;
-    height: 450px;
+    width: 750px;
+    height: 800px;
     object-fit: cover;
     flex-shrink: 0;
 }
 
+.timeline-section{
+    background-color: blue;
+    padding: 80px 20px;
+}
+
+.timeline-section h1{
+    text-align: center;
+    font-family: "Imbue", serif;
+    font-size: clamp(45px, 6vw, 75px);
+}
+
+.timeline{
+    position: relative;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.timeline::before{
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+
+    width: 5px;
+    background-color: white;
+    transform: translateX(-50%);
+    border-radius: 10px;
+}
+
+.timeline-item{
+    position: relative;
+    width: 50%;
+    min-height: 230px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+}
+
+.timeline-item.left{
+    margin-right:auto;
+    padding-right:160px;
+    justify-content: flex-end;
+    text-align: right;
+}
+
+.timeline-item.right{
+    margin-left:auto;
+    padding-left:160px;
+    justify-content: flex-start;
+    text-align: left;
+}
+
+.timeline-dot{
+    position: relative;
+    top: 50%;
+    width: 18px;
+    height: 18px;
+    z-index: 3;
+    border-radius: 50%;
+    background-color: white;
+}
+
+.timeline-item.left, .timeline-dot{
+    right: -13px;
+}
+
+.timeline-item.right, .timeline-dot{
+    left: -13px;
+}
+
+.timeline-icon{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    overflow: hidden;
+    box-sizing: border-box;
+    z-index: 2;
+}
+
+.timeline-item.left .timeline-icon{
+    right: 30px;
+}
+
+.timeline-item.right .timeline-icon{
+    left: 30px;
+}
+
+.timeline-icon img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
 @keyframes scrollGallery {
     from {
         transform: translateX(0);
