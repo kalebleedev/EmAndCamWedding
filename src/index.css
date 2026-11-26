@@ -36,7 +36,10 @@ html, body, #root{
 }
 
 .main-content{
+    display: flex;
+    flex-direction: column;
     margin-top: 25px;
+
 }
 .header-section h1{
     margin: 0;
@@ -50,9 +53,6 @@ html, body, #root{
     align-items: center;
     font-family: "Imbue", serif;
     font-size: 70px;
-}
-.countdown h2{
-
 }
 
 .countdown-display .numbers{
@@ -134,7 +134,6 @@ html, body, #root{
 }
 
 .timeline-section{
-    background-color: blue;
     padding: 80px 20px;
 }
 
@@ -230,6 +229,120 @@ html, body, #root{
     object-fit: cover;
     display: block;
 }
+
+.love-story h1{
+    display: flex;
+    flex-direction: column;
+    font-size: 70px;
+    font-family: "Imbue", serif;
+    align-items: center;
+}
+
+.love-story p{
+    max-height: auto;
+    max-width: 1500px;
+    
+    margin-left: 7%;
+    font-size: 40px;
+    font-family: "Imbue", serif;
+}
+
+.event-info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    padding: 60px 30px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.event-image{
+    width: 100%;
+    max-width: 1000px;
+    margin-bottom: 35px;;
+}
+
+.event-image img{
+    width: 100%;
+    height: 600px;
+    object-fit: cover;
+}
+
+.event-details{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.event-details h1{
+    font-weight: 400;
+    margin: 0;
+    font-size: 70px;
+    font-family: "Imbue", serif;
+}
+
+.event-details h2{
+    font-weight: 400;
+    margin: 0;
+    font-size: 40px;
+    font-family: "Imbue", serif;
+}
+
+.event-details p{
+    font-size: 18px;
+    line-height: 1.6;
+    margin: 0;
+    font-size: 40px;
+    font-family: "Imbue", serif;
+}
+
+.event-description{
+    max-width: 550px;
+}
+
+.event-buttons{
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+    margin-top: 35px;
+}
+
+.event-btn{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 12px 30px;
+    min-width: 180px;
+
+    background: transparent;
+}
+
+.event-btn a{
+    text-decoration: none;
+    color: white;
+    font-size: 35px;
+    font-family: "Imbue", serif;
+}
+
+.event-btn:hover{
+    background-color: beige;
+    color: blanchedalmond;
+}
+
+.accommodations h1{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: "Imbue", serif;
+    font-size: 70px;
+}
+
+
 @keyframes scrollGallery {
     from {
         transform: translateX(0);

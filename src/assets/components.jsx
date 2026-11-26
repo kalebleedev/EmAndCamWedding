@@ -55,7 +55,7 @@ export function CountdownDate({targetDate}){
     return (
         <div className="countdown">
                 <div className="countdown-display">
-                    <h2>Countdown</h2>
+                    <h2>COUNTDOWN</h2>
                     <div className="numbers">
                         <p>{timeLeft.days}</p>
                             <p>:</p>
@@ -117,7 +117,7 @@ export function MemoryLaneTimeLine({photos=[]}){
 
     return(
         <section className="timeline-section">
-            <h1>A Walk Down Memory Lane!</h1>
+            <h1>A WALK DOWN MEMORY LANE!</h1>
 
             <div className="timeline">
                 {events.map((event, index) => (
@@ -135,6 +135,133 @@ export function MemoryLaneTimeLine({photos=[]}){
                     </div>
                 ))}
             </div>
+        </section>
+    )
+}
+
+export function EventInfo({venuePic, name, time, address, description, extraDetails, mapLink, start, end}){
+    return (
+        <section className="event-info">
+                {venuePic && (
+                    <div className="event-image">
+                        <img src={venuePic} alt={name}/>
+                    </div>
+                )}
+
+                    <div className="event-details">
+                            <h1>{name}</h1>
+                            <h2>{time}</h2>
+
+                            {address &&  <p>{address}</p>}
+                            {description && (
+                                <p className="eventDescription">{description}</p>
+                            )}
+
+                            {extraDetails && (
+                                <p className="eventDescription">{extraDetails}</p>
+                            )}
+
+                            <div className="event-buttons">
+                                    {mapLink && (
+                                        <button className="event-btn"><a href={mapLink}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            > MAP </a></button>
+                                    )}
+
+                                    {start && end && (
+                                        <AddToCalendar 
+                                            title = {name}
+                                            description = {description}
+                                            location = {address}
+                                            start = {start}
+                                            end = {end}
+                                        />
+                                    )}
+                            </div>
+                    </div>
+
+                    
+        </section>
+    )
+}
+
+export function AddToCalendar({
+    title,
+    description,
+    location,
+    start,
+    end
+}) {
+    const handleAddToCalendar = () => {
+        const event = {
+            title: title,
+            description: description,
+            location: location,
+            start: start,
+            end: end
+        };
+            const escapeICS = (value) =>
+        String(value ?? "")
+            .replace(/\\/g, "\\\\")
+            .replace(/\r\n|\r|\n/g, "\\n")
+            .replace(/,/g, "\\,")
+            .replace(/;/g, "\\;");
+
+        const calendarData = [
+            "BEGIN:VCALENDAR",
+            "VERSION:2.0",
+            "PRODID:-//Wedding Website//EN",
+            "CALSCALE:GREGORIAN",
+            "BEGIN:VEVENT",
+            `UID:${encodeURIComponent(title)}-${start}@wedding`,
+            `DTSTAMP:${new Date().toISOString()
+                .replace(/[-:]/g, "")
+                .replace(/\.\d{3}/, "")}`,
+            `DTSTART:${start}`,
+            `DTEND:${end}`,
+            `SUMMARY:${escapeICS(title)}`,
+            `DESCRIPTION:${escapeICS(description)}`,
+            `LOCATION:${escapeICS(location)}`,
+            "END:VEVENT",
+            "END:VCALENDAR"
+        ].join("\r\n") + "\r\n";
+
+        const blob = new Blob([calendarData], {
+            type: "text/calendar;charset=utf-8"
+        });
+
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+
+        link.href = url;
+        link.download = `${title.replace(/[^a-zA-Z0-9]/g, "-")}.ics`;
+
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+    };
+
+    return (
+        <button
+            type="button"
+            className="event-btn"
+            onClick={handleAddToCalendar}
+        >
+            ADD TO CALENDAR
+        </button>
+    );
+}
+
+
+export function footer(){
+    return (
+        <section className="footer">
+                <h1>C & E</h1>
+                <p>---------</p>
+                <p>Created by Kaleb :P</p>
         </section>
     )
 }
