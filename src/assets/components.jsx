@@ -99,21 +99,7 @@ export function PhotoGallery({images=[]}){
     )
 }
 
-export function MemoryLaneTimeLine({photos=[]}){
-    const events = [
-        {
-            title: "Test",
-            description: "Test Description",
-            image: photos[0]
-        },
-
-        {
-            title: "Test2",
-            description: "Test Description",
-            image: photos[1]
-        },
-
-    ];
+export function MemoryLaneTimeLine({events = []}){
 
     return(
         <section className="timeline-section">
@@ -129,6 +115,7 @@ export function MemoryLaneTimeLine({photos=[]}){
                                     />
                             </div>
                             <div className="timeline-content">
+                                    {event.date && <span>{event.date}</span>}
                                     <h2>{event.title}</h2>
                                     <p>{event.description}</p>
                             </div>
@@ -255,6 +242,60 @@ export function AddToCalendar({
     );
 }
 
+export function FAQ({categories =[]}){
+    return (
+        <section className="faq-section">
+            <div className="faq-heading">
+                    <h1>FAQ</h1>
+            </div>
+
+            <div className="faq-content">
+                    {categories.map((category, index) => (
+                        <FAQCategory
+                            key={index}
+                            title={category.title}
+                            questions={category.questions}
+                        />
+                    ))}
+            </div>
+        </section>
+    )
+}
+
+export function FAQItem({question, answer}){
+    const [isOpen, setIsOpen] = useState(false);
+
+    return (
+        <div className="faq-item">
+            <button type="button" className="faq-question" onClick={() => setIsOpen(!isOpen)} aria-expanded={isOpen}>
+                    <span>{isOpen ? "▲" : "▼"}</span>
+                    <span>{question}</span>
+            </button>
+
+            {isOpen && (
+                <div className="faq-answer">
+                    <p>{answer}</p>
+                </div>
+            )}
+        </div>
+    )
+}
+
+export function FAQCategory({title, questions=[]}){
+    return (
+        <div className="faq-category">
+            <h2>{title}</h2>
+
+            {questions.map((item, index) => (
+                <FAQItem
+                    key={index}
+                    question={item.question}
+                    answer={item.answer}
+                />
+            ))}
+        </div>
+    )
+}
 
 export function footer(){
     return (

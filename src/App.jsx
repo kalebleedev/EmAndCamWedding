@@ -1,4 +1,4 @@
-import { NavBar, CountdownDate, PhotoGallery, MemoryLaneTimeLine, EventInfo, AddToCalendar } from "./assets/components"
+import { NavBar, CountdownDate, PhotoGallery, MemoryLaneTimeLine, EventInfo, AddToCalendar, FAQ, FAQCategory, FAQItem } from "./assets/components"
 import { useState } from "react"
 import photo1 from "./assets/photos/photo1.jpg"
 import photo2 from "./assets/photos/photo2.jpg"
@@ -17,6 +17,44 @@ function App() {
   const [activeSection, setActiveSection] = useState("Home")
   const photos = [bw1, photo1, ring2, photo2, bw2, photo3, bw3, ring, bw4, photo4];
   const test= [photo1, photo2]
+  const memories = [
+        {
+            title: "TEST",
+            date: "AUGUST 2020",
+            description: "TEST DESCRIPTION",
+            image: test[0]
+        },
+
+        {
+            title: "TEST2",
+            date: "AUGUST 2020",
+            description: "TEST DESCRIPTION",
+            image: test[1]
+        },
+  ];
+
+  const faq = [
+    {
+      title: "General Wedding Details",
+      questions: [
+        {
+          question: "When is the wedding?",
+          answer: "August 3rd, 2027 @ 4:30PM!"
+        },
+
+        {
+          question: "Where is the wedding?",
+          answer: "The venue for the wedding is Temecula Creek Inn."
+        },
+
+        {
+          question: "Is there a dress code?",
+          answer: "To be announced ... >:)"
+        }
+
+      ]
+    }
+  ]
 
   return (
     <>  
@@ -48,7 +86,7 @@ function App() {
 
                           <div className="memory-lane">
                               <MemoryLaneTimeLine 
-                                photos={test}
+                                events={memories}
                               />
 
                           </div>
@@ -56,8 +94,8 @@ function App() {
                     )}
 
                     {activeSection === 'Schedule' && (
-                      <div>
-                        <h1>Schedule</h1>
+                      <section className="schedule-section">
+                      
                         <EventInfo 
                             venuePic={tci}
                             name= "TEMECULA CREEK INN"
@@ -92,7 +130,7 @@ function App() {
                                 mapLink = "https://maps.apple.com/directions?destination=Embassy+Suites+by+Hilton+Temecula+Valley+Wine+Country%2C+29345+Rancho+California+Rd%2C+Temecula%2C+CA++92591%2C+United+States&destination-place-id=I1D41955442C8134D&mode=driving"
                             />
                         </section>
-                      </div>
+                      </section>
                     )}
 
                     {activeSection === 'Travel' && (
@@ -120,9 +158,9 @@ function App() {
                     )}
 
                     {activeSection === 'FAQ' && (
-                      <div>
-                        <h1>FAQ</h1>
-                      </div>
+                      <section className="FAQs-section">
+                          <FAQ categories={faq}/>
+                      </section>
                     )}
               </main>
         </div>
